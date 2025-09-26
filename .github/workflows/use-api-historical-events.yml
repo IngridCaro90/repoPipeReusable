@@ -1,0 +1,26 @@
+name: use-Eventos-historicos-wikipedia
+
+on:
+  workflow_dispatch:
+    inputs:
+      dia:
+        description: Ingrese día (DD)
+        required: true
+        type: choice
+        options: [ "01","02","03","04","05","06","07","08","09","10",
+                   "11","12","13","14","15","16","17","18","19","20",
+                   "21","22","23","24","25","26","27","28","29","30","31" ]
+
+      mes:
+        description: Ingrese mes (MM)
+        required: true
+        type: choice
+        options: [ "01","02","03","04","05","06","07","08","09","10",
+                   "11","12" ]
+
+jobs:
+  call-reusable:
+    uses: IngridCaro90/pipelineReusable/.github/workflows/api-historical-events.yml@main
+    with:
+      mes: ${{ inputs.mes }}
+      dia: ${{ inputs.dia }}
